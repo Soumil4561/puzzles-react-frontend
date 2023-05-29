@@ -38,8 +38,9 @@ function Login() {
         console.log(result.message);
         console.log(result);
         if(result.success){
+            console.log(result);
             <Alert severity="success">{result.message}</Alert>
-            navigate("/home");
+            navigate("/home",{state: result.user});
         }
         else{
             
