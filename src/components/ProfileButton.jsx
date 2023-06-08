@@ -24,8 +24,7 @@ function ProfileButton(props) {
                 aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
                 onClick={handleClick}
             >
-            <Avatar sx={{ width: 40, height: 40 }} alt={props.userName} src={props.profilePhoto} />
-           
+            <Avatar sx={{ width: 40, height: 40 }} alt={props.userName} src={props.profilePhoto} >{props.userName.charAt(0)}</Avatar>
             </Button>
             <Menu
                 id="profile-menu"
@@ -36,7 +35,7 @@ function ProfileButton(props) {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <a href="/profile"><MenuItem onClick={handleClose}>Profile</MenuItem></a>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>

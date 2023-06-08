@@ -5,8 +5,28 @@ import Alert from '@mui/joy/Alert';
 import Box from '@mui/joy/Box';
 import GoogleIcon from '@mui/icons-material/Google';
 import {  useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 function Login() {
+    const [cookies] = useCookies();
+    const checksession = async () => {
+        const response = await fetch("http://localhost:3000/auth/checksession", {
+            method: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" }
+        });
+        const result = await response.json();
+        console.log(result);
+        if (result.success) {
+            navigate("/home", { state: result.userID });
+        }}
+        
+    React.useEffect(() => {
+        (async () => {
+            if(cookies) await checksession();
+        })();
+    }, []);
+
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -30,20 +50,19 @@ function Login() {
 
         const reponse = await fetch("http://localhost:3000/auth/login", {
             method: "POST",
+            mode: "cors",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
         });
 
-        const result = await reponse.json();
-        console.log(result.message);
-        console.log(result);
+        const result = await reponse.json();    
         if(result.success){
             console.log(result);
             <Alert severity="success">{result.message}</Alert>
-            navigate("/home",{state: result.user});
+            navigate("/home",{state: result.userID});
         }
         else{
-            
             <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
                 <Alert severity="error">{result.message}</Alert>
             </Box>

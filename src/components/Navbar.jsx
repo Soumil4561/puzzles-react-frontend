@@ -3,8 +3,10 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
-import CreateIcon from '@mui/icons-material/Create';
+
 import ProfileButton from './ProfileButton';
+
+import CreatePost from './CreatePost';
 
 const SearchBar = styled(TextField)({
   '& label': {
@@ -32,21 +34,24 @@ const SearchBar = styled(TextField)({
 function NavBarSearch(props) {
   const [text, setText] = useState("");
 
+
   async function handleSearch(event) {
     const value = event.target.value;
     if (value.length > 2) {
       setText(value);
-      const response = await fetch("http://localhost:3000/utility/searchTopic/"+text);
+      const response = await fetch("http://localhost:3000/utility/searchTopic/" + text);
       const result = await response.json();
       console.log(result);
     }
   }
-  return (
+  return (<>
+
     <div className="navbar-search">
-      <CreateIcon className="create-button" fontSize='large' />
       <SearchBar onChange={handleSearch} fullWidth id="search" label="Search Topics" variant="outlined" />
       <SearchIcon className="search-button" fontSize='large' />
     </div>
+  </>
+
   )
 }
 
@@ -58,11 +63,14 @@ function Navbar(props) {
           <ExtensionIcon />
           <h1>Puzzles</h1>
         </div>
+        <CreatePost />
         <NavBarSearch />
-        <ProfileButton userName={props.username} profilePhoto={props.profilePhoto}/>
+        <ProfileButton userName={props.username} profilePhoto={props.profilePhoto} />
       </div>
+
     </div>
   )
 }
 
 export default Navbar;
+export  {SearchBar};

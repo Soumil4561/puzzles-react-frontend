@@ -12,6 +12,8 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import CommentIcon from '@mui/icons-material/Comment';
 import SaveIcon from '@mui/icons-material/Save';
+import Loading from "./Loading";
+import Error from "./Error";
 
 
 const testPost = {
@@ -35,8 +37,8 @@ const post = {
 
 const PostButton = (props) => {
     var Button;
-    if(props.type === "like") Button = <ThumbUpIcon color="primary" />
-    else if(props.type === "dislike") Button = <ThumbDownIcon color="primary" />
+    if (props.type === "like") Button = <ThumbUpIcon color="primary" />
+    else if (props.type === "dislike") Button = <ThumbDownIcon color="primary" />
     else if (props.type === "comment") Button = <CommentIcon color="primary" />
     else Button = <SaveIcon color="primary" />
     return (<>
@@ -49,51 +51,106 @@ const PostButton = (props) => {
     )
 }
 
+function Post(props) {
+    return (
+        <Card className="post" sx={post}>
+            <div className="post-describers">
+                <Grid container spacing={1}>
+                    <Grid item xs={4}>
+                        <h6>{props.topic}</h6>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <h6>{props.author}</h6>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <h6>{props.date}</h6>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <h6>{props.time}</h6>
+                    </Grid>
+                </Grid>
+            </div>
+            <CardHeader
+                title={props.title}
+            />
+            <div className="post-media">
+                <CardMedia
+                    component="img"
+                    height="300"
+                    image={testPost.photo}
+                    alt="post image"
+                />
+            </div>
+            {/* <CardContent>
+                        {testPost.description}
+                    </CardContent> */}
+            <CardActions disableSpacing>
+                <PostButton type="like" value={props.likes} />
+                <PostButton type="dislike" value={props.dislikes} />
+                <PostButton type="comment" value="Comment" />
+                <PostButton type="save" value="Save" />
+            </CardActions>
+        </Card>
+    )
+}
+
+
+
 function Posts(props) {
+    const [posts, setPosts] = React.useState(props.posts);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(null);
+
+    const fetchPosts = async () => {
+        
+    }
+
+    React.useEffect(() => {
+        (async () => {
+            if (loading) {
+                try {
+                    setPosts(props.posts);
+                    setLoading(false);
+                } catch (error) {
+                    setLoading(false);
+                    setError(error);
+                    console.log(error);
+                }
+            }
+        })(); 
+    }, []);
+
+    if (loading) return <Loading />
+    if (error){
+        console.log(error);
+        return <Error />
+    }
+
     return (
         <div className="posts-container">
             <Stack spacing={1}>
-                <Card className="post" sx={post}>
-                    <div className="post-describers">
-                        <Grid container spacing={1}>
-                            <Grid item xs={4}>
-                                <h6>{testPost.topic}</h6>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <h6>{testPost.author}</h6>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <h6>{testPost.date}</h6>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <h6>{testPost.time}</h6>
-                            </Grid>
-                        </Grid>
-                    </div>
-                    <CardHeader
-                        title={testPost.title}
-                    />
-                    <div className="post-media">
-                        <CardMedia
-                            component="img"
-                            height="300"
-                            image={testPost.photo}
-                            alt="post image"
-                        />
-                    </div>
-                    {/* <CardContent>
-                        {testPost.description}
-                    </CardContent> */}
-                    <CardActions disableSpacing>
-                        <PostButton type="like" value={testPost.likes} />
-                        <PostButton type="dislike" value={testPost.dislikes} />
-                        <PostButton type="comment" value="Comment" />
-                        <PostButton type="save" value="Save" />
-                    </CardActions>
-                </Card>
+                {posts.map((post) => {
+                    return (<>
+                    {console.log(post)}
+                        <Post
+                            title={post.postTitle}
+                            description={post.postContent}
+                            date={"hey"}
+                            time={"no"}
+                            author={post.postCreatorName}
+                            topic={post.postTopic}
+                            likes={post.likes}
+                            dislikes={post.dislikes}
+                            photo={post.postImage} />
+                    </>
+                    )
+                })}
             </Stack>
         </div>
     )
 }
+
+
+
 
 export default Posts;
