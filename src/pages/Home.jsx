@@ -2,11 +2,11 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import TopicSidebar from "../components/TopicSidebar";
 import Posts from "../components/Posts";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Home() {
     const [loading, setLoading] = React.useState(true);
-    const userID = useLocation().state;
+    const userID = useSelector(state => state.userID);
 
     const [user, setUser] = React.useState(null);
     const [topicsFollowed, setTopicsFollowed] = React.useState([]);
@@ -39,7 +39,6 @@ function Home() {
         return <div>Loading...</div>
     } else {
         return (<>
-            <Navbar profilePhoto={user.profilePhoto} username={user.username} />
             <div className="content-container">
                 <TopicSidebar topicsFollowed={topicsFollowed} />
                 <Posts posts={posts}/>

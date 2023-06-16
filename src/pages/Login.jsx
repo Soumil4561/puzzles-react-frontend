@@ -5,29 +5,22 @@ import Alert from '@mui/joy/Alert';
 import Box from '@mui/joy/Box';
 import GoogleIcon from '@mui/icons-material/Google';
 import {  useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../reducers/profileSlicer";
+
 
 function Login() {
-    const [cookies] = useCookies();
-    const checksession = async () => {
-        const response = await fetch("http://localhost:3000/auth/checksession", {
-            method: "GET",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" }
-        });
-        const result = await response.json();
-        console.log(result);
-        if (result.success) {
-            navigate("/home", { state: result.userID });
-        }}
-        
-    React.useEffect(() => {
-        (async () => {
-            if(cookies) await checksession();
-        })();
-    }, []);
 
+    const loggedIn = useSelector(state => state.loggedIn);
     const navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (loggedIn) {
+            navigate("/home");
+        }
+    }, [loggedIn]);
+
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -38,6 +31,8 @@ function Login() {
     const CatchPassword = (event) => {
         setPassword(event.target.value);
     }
+
+    const dispatch = useDispatch();
 
     const Submit = async () => {
         if (username === "" || password === "") {
@@ -60,7 +55,8 @@ function Login() {
         if(result.success){
             console.log(result);
             <Alert severity="success">{result.message}</Alert>
-            navigate("/home",{state: result.userID});
+            dispatch(login(result.user));
+            navigate("/home");
         }
         else{
             <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>

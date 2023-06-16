@@ -276,8 +276,39 @@ body{
     margin-bottom: 1%;
     width: 100%;
     color: var(--primary-text-color);
+    
 }
 
-.create-post-topic {
+.create-post-topic-search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.create-post-buttons{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 100%;
     color: var(--primary-text-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.create-post-buttons:hover{
+    cursor: pointer;
+}
+
+.preview-post{
+    margin-left: 2%;
+    margin-right: 10%;
+}
+
+.add-post{
+    margin-left: 8%;
+    margin-right: 10%;
+}
+
+.cancel-post{
+    margin-left: 10%;
 }

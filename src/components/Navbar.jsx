@@ -65,7 +65,7 @@ function Navbar(props) {
         </div>
         <CreatePost />
         <NavBarSearch />
-        <ProfileButton userName={props.username} profilePhoto={props.profilePhoto} />
+        <ProfileButton username={props.username} profilePhoto={props.profilePhoto} />
       </div>
 
     </div>

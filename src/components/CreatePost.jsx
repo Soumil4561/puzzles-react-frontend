@@ -5,12 +5,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CreateIcon from '@mui/icons-material/Create';
-import { Fab } from '@mui/material';
+import { Button, Fab } from '@mui/material';
 import { SearchBar } from "./Navbar";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
 
 function CreatePost(props) {
     const [open, setOpen] = React.useState(false);
@@ -20,12 +21,16 @@ function CreatePost(props) {
     };
 
     const handleClose = (event) => {
+        setOpen(false);
+    };
+    
+    const createPost = async () => {
         const postTopic = document.getElementById("create-post-topic").value;
         const postTitle = document.getElementById("post-title").value;
         const postContent = document.getElementById("post-content").value;
         console.log(postTopic, postTitle, postContent);
-        setOpen(false);
-    };
+    }
+
     return (
         <div className="create-post">
             <Fab sx={{ height: "50px", width: "50px" }} color="primary" aria-label="add" onClick={handleClickOpen}>
@@ -45,20 +50,20 @@ function CreatePost(props) {
                 <DialogContent>
                     <DialogContentText>
                         <div className="create-post-body">
-                        <div className="create-post-topic">
+                            <div className="create-post-topic">
                                 <Select
-                                    sx={{ 
-                                        width: "50%", 
-                                        backgroundColor: "#071a2e", 
+                                    sx={{
+                                        width: "50%",
+                                        backgroundColor: "#071a2e",
                                         color: "#ffffff",
                                         borderColor: "#ffffff"
-                                        }
+                                    }
                                     }
                                     labelId="select-topic"
                                     id="create-post-topic"
                                     label="Topic"
                                     defaultValue={props.topic || ""}
-                                    
+
                                 >
                                     <MenuItem value={10}>Ten</MenuItem>
                                     <MenuItem value={20}>Twenty</MenuItem>
@@ -69,19 +74,29 @@ function CreatePost(props) {
                                 <SearchBar fullWidth id="post-title" label="Post Title" variant="outlined" />
                             </div>
                             <div className="create-post-content">
-                                <SearchBar fullWidth id="post-content" label="Post Content" variant="outlined" multiline rows={6} maxRows={6} />
+                                <SearchBar fullWidth id="post-content" label="Post Content" variant="outlined" multiline rows={8} maxRows={8} />
                             </div>
-                            
+
                             <div className="create-post-image">
-                                <IconButton color="primary" aria-label="upload picture" component="span">
-                                    <AttachFileIcon sx={{color:"#ffffff"}}/>
+                                <IconButton color="primary" aria-label="upload picture" component="span" onCLick>
+                                    <AttachFileIcon sx={{ color: "#ffffff" }} />
                                 </IconButton>
                             </div>
                         </div>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <button onClick={handleClose}>Post</button>
+                    <div className="create-post-buttons">
+                        <div className="preview-post">
+                        <Button onClick={handleClose} color="primary" variant="contained">PREVIEW</Button>
+                        </div>
+                        <div className="add-post">
+                        <Button onClick={createPost} color="primary" variant="contained">CREATE POST </Button>
+                        </div>
+                        <div className="cancel-post">
+                        <Button onClick={handleClose} color="primary" variant="contained">CANCEL</Button>
+                        </div>
+                    </div>
                 </DialogActions>
             </Dialog>
         </div>

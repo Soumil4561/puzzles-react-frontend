@@ -24,7 +24,7 @@ function ProfileButton(props) {
                 aria-expanded={Boolean(anchorEl) ? 'true' : undefined}
                 onClick={handleClick}
             >
-            <Avatar sx={{ width: 40, height: 40 }} alt={props.userName} src={props.profilePhoto} >{props.userName.charAt(0)}</Avatar>
+            <Avatar sx={{ width: 40, height: 40 }} alt={props.username} src={props.profilePhoto} >{props.username.charAt(0)}</Avatar>
             </Button>
             <Menu
                 id="profile-menu"
