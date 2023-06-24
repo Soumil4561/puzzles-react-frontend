@@ -13,19 +13,18 @@ function App() {
     const loggedIn = useSelector((state) => state.profile.loggedIn);
     const profilePhoto = useSelector((state) => state.profile.profilePhoto);
 
-    console.log(loggedIn);
-
     return (
         <>
-            {loggedIn && <>
-                <Navbar profilePhoto={profilePhoto} username={username} />
-                <div className='content-container'>
-                    <div className='topic-sidebar'>
-                    </div>
-                </div></>
-            }
-
             <BrowserRouter>
+                {loggedIn && <>
+                    <Navbar profilePhoto={profilePhoto} username={username} />
+                    <div className='content-container'>
+                        <div className='topic-sidebar'>
+                        </div>
+                    </div></>
+                }
+
+
                 <Routes>
                     <Route path="/" element={loggedIn ? <Home /> : <Login />} />
                     <Route path="/home" element={loggedIn ? <Home /> : <Login />} />

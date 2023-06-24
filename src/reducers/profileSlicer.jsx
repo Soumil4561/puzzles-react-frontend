@@ -1,13 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { useCookies } from 'react-cookie'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const profileSlicer = createSlice({
     name: 'profile',
     initialState: {
         userID: null,
-        username: 'Not Logged In',
-        email: 'Not Logged In',
-        loggedIn: false,
+        username: null,
+        email: null,
+        loggedIn: null,
         profilePhoto: null
     },
     reducers: {

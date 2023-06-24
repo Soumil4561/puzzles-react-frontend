@@ -8,7 +8,6 @@ import {  useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../reducers/profileSlicer";
 
-
 function Login() {
 
     const loggedIn = useSelector(state => state.loggedIn);
@@ -42,6 +41,8 @@ function Login() {
             username: username,
             password: password
         }
+
+        //const [cookies, setCookie] = useCookies(['userID', 'username', 'email', 'profilePhoto']);
 
         const reponse = await fetch("http://localhost:3000/auth/login", {
             method: "POST",

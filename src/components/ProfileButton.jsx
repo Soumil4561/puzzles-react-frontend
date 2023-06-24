@@ -3,6 +3,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
+import { useDispatch } from "react-redux";
+import { logout } from "../reducers/profileSlicer";
+import { useNavigate } from "react-router-dom";
+
 
 function ProfileButton(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -13,6 +17,23 @@ function ProfileButton(props) {
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        const response = await fetch("http://localhost:3000/auth/logout", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        const data = await response.json();
+        if(data.success){
+            dispatch(logout());
+            navigate("/");
+        }
     };
 
     return (
@@ -38,7 +59,7 @@ function ProfileButton(props) {
                 <a href="/profile"><MenuItem onClick={handleClose}>Profile</MenuItem></a>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
         </div>
     )
