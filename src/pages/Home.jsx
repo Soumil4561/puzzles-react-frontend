@@ -1,12 +1,14 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Pagination from '@mui/material/Pagination';
 import TopicSidebar from "../components/TopicSidebar";
 import Posts from "../components/Posts";
 import { useSelector } from "react-redux";
+import { LoadingHome } from "../components/Loading";
+import { Button, IconButton } from "@mui/material";
 
 function Home() {
     const [loading, setLoading] = React.useState(true);
-    const userID = useSelector(state => state.userID);
+    const userID = useSelector(state => state.profile.userID);
 
     const [user, setUser] = React.useState(null);
     const [topicsFollowed, setTopicsFollowed] = React.useState([]);
@@ -21,10 +23,25 @@ function Home() {
         const result = await response.json();
         if (response.status === 200) {
             setUser(result.user);
-            setTopicsFollowed(result.topics); 
+            setTopicsFollowed(result.topics);
             setPosts(result.posts);
             setLoading(false);
-            console.log(loading);
+        }
+    } 
+
+    const fetchMorePosts = async () => {
+        const response = await fetch(`http://localhost:3000/home`, {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                lastPostIDTime: posts[posts.length - 1].postCreated
+            })
+        });
+
+        const result = await response.json();
+        if (response.status === 200) {
+            console.log(result.posts);
         }
     }
 
@@ -36,12 +53,18 @@ function Home() {
 
 
     if (loading) {
-        return <div>Loading...</div>
+        return <LoadingHome />
     } else {
         return (<>
             <div className="content-container">
                 <TopicSidebar topicsFollowed={topicsFollowed} />
-                <Posts posts={posts}/>
+                <div className='posts'>
+                <Posts posts={posts} />
+                <Button className="load-more" color="primary" onClick={fetchMorePosts}>
+                    Load More
+                </Button>
+                </div>
+                
             </div>
         </>
         )

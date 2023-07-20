@@ -14,24 +14,13 @@ import CommentIcon from '@mui/icons-material/Comment';
 import SaveIcon from '@mui/icons-material/Save';
 import Loading from "./Loading";
 import Error from "./Error";
+import { CardActionArea } from "@mui/material";
+import Link from "@mui/material/Link"
 
-
-const testPost = {
-    title: "I’m Really Happy that this is the Latest Free Game for EpicGames. This is one of the Games I been hoping become Free the store.", //
-    description: "This is a test post",
-    date: "2021-10-10", //
-    time: "10:10:10", // 
-    author: "Test User",
-    topic: "Test Topic",
-    likes: 10,
-    comments: 10,
-    dislikes: 10,
-    photo: "https://i.redd.it/6d7m3kxqp8n61.png"
-}
 
 const post = {
     width: "100%",
-    backgroundColor: "#071a2e",
+    backgroundColor: "var(--secondary-color)",
     color: "#ffffff",
 }
 
@@ -53,38 +42,47 @@ const PostButton = (props) => {
 
 function Post(props) {
     return (
+        
         <Card className="post" sx={post}>
             <div className="post-describers">
                 <Grid container spacing={1}>
                     <Grid item xs={4}>
-                        <h6>{props.topic}</h6>
+                        <Link href={"/topic/"+props.topic} color='inherit' underline='hover'>
+                            <h6>Topic: {props.topic}</h6>
+                        </Link>
                     </Grid>
                     <Grid item xs={4}>
-                        <h6>{props.author}</h6>
+                        <h6>Author: {props.author}</h6>
                     </Grid>
                     <Grid item xs={2}>
-                        <h6>{props.date}</h6>
+                        <h6>Date: {props.date}</h6>
                     </Grid>
                     <Grid item xs={2}>
-                        <h6>{props.time}</h6>
+                        <h6>Time:{props.time}</h6>
                     </Grid>
                 </Grid>
             </div>
-            <CardHeader
-                title={props.title}
-            />
-            <div className="post-media">
-                <CardMedia
-                    component="img"
-                    height="300"
-                    image={testPost.photo}
-                    alt="post image"
+            <CardActionArea onClick={() => { console.log(props.postID);
+                window.location.href = `/posts/${props.postID}`;
+            }}>
+            <div className="post-title">
+                <CardHeader 
+                    title={props.title}
                 />
             </div>
-            {/* <CardContent>
-                        {testPost.description}
-                    </CardContent> */}
-            <CardActions disableSpacing>
+            <div className="post-media">
+                {
+                    props.photo ? <CardMedia
+                    component="img"
+                    image={props.photo}
+                    alt="Paella dish"
+                /> : <CardContent>
+                    {props.description}
+                </CardContent>
+                }
+            </div>
+            </CardActionArea>
+            <CardActions>
                 <PostButton type="like" value={props.likes} />
                 <PostButton type="dislike" value={props.dislikes} />
                 <PostButton type="comment" value="Comment" />
@@ -94,16 +92,10 @@ function Post(props) {
     )
 }
 
-
-
 function Posts(props) {
     const [posts, setPosts] = React.useState(props.posts);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
-
-    const fetchPosts = async () => {
-        
-    }
 
     React.useEffect(() => {
         (async () => {
@@ -117,11 +109,11 @@ function Posts(props) {
                     console.log(error);
                 }
             }
-        })(); 
+        })();
     }, []);
 
     if (loading) return <Loading />
-    if (error){
+    if (error) {
         console.log(error);
         return <Error />
     }
@@ -129,10 +121,11 @@ function Posts(props) {
     return (
         <div className="posts-container">
             <Stack spacing={1}>
-                {posts.map((post) => {
+                {posts.map((post, index) => {
                     return (<>
-                    {console.log(post)}
                         <Post
+                            key={index}
+                            postID={post._id}
                             title={post.postTitle}
                             description={post.postContent}
                             date={"hey"}
@@ -141,7 +134,7 @@ function Posts(props) {
                             topic={post.postTopic}
                             likes={post.likes}
                             dislikes={post.dislikes}
-                            photo={post.postImage} />
+                            photo={post.postImageFile} />
                     </>
                     )
                 })}

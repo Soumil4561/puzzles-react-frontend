@@ -5,8 +5,6 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch } from "react-redux";
 import { logout } from "../reducers/profileSlicer";
-import { useNavigate } from "react-router-dom";
-
 
 function ProfileButton(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,19 +18,18 @@ function ProfileButton(props) {
     };
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleLogout = async () => {
         const response = await fetch("http://localhost:3000/auth/logout", {
             method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            }
+            credentials: "include",
+            headers: {"Content-Type": "application/json"}
         });
         const data = await response.json();
         if(data.success){
+            console.log(data);
             dispatch(logout());
-            navigate("/");
+            window.location.href = "/";
         }
     };
 

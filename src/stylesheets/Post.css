@@ -1,0 +1,79 @@
+.page-container{
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    position: absolute;
+}
+
+.post-container{
+    background-color: var(--secondary-color);
+    margin-top: 2%;
+}
+
+
+
+.post-button button{
+    padding:0 2%;
+    margin:0;
+    width: min-content;
+    height: min-content;
+    color: var(--primary-text-color);
+}
+
+.post-button h4{
+    margin: 0;
+    padding: 0;
+    padding-left: 5%;
+}
+
+.enabled{
+    color: var(--tertiary-color);
+}
+
+.comment-input-container{
+    margin: 0 5%;
+    margin-bottom: 2%;
+    background-color: var(--secondary-color);
+}
+
+
+.comment-box-descriptor{
+    color: var(--primary-text-color);
+    margin: 0 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.comment-button-container{
+    margin: 1% 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    color: var(--primary-text-color);
+}
+
+.comment-button-container button{
+    color: var(--tertiary-color);
+}
+
+
+.comments-container{
+    margin: 0 5%;
+    padding: 2%;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.comments-container h2{
+    margin: 1% 1%;
+    padding: 1%;
+}

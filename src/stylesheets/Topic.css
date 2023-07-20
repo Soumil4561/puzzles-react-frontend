@@ -1,0 +1,101 @@
+.topicPage-header-container{
+    top:10%;
+    position: absolute;
+    height: 47%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topicPage-banner{
+    height: 75%;
+    width: 100%;
+}
+
+.topicPage-banner img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.topicPage-info{
+    height: 25%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow-x: hidden;
+}
+
+.topicPage-id{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.topicPage-avatar{
+    height: 10vh;
+    width: 10vh;
+}
+
+.topicPage-avatar img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.topicPage-name{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.topicPage-name h3{
+    height: 100%;
+    font-size: 2.54rem;
+    color: var(--primary-text-color);
+    margin: 0;
+    margin-top: 0.5rem;
+}
+
+.topicPage-followers{
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.topicPage-followers h4{
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-text-color);
+}
+
+.divider{
+    top:57%;
+    position: absolute;
+    height: 0.5vh;
+    width: 100%;
+    background-color: var(--primary-text-color);
+}
+
+
+.topicPage-content-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    top: 60%;
+    position: absolute;
+    z-index: 45;
+
+}
+
+

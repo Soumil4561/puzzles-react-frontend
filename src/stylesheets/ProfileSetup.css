@@ -1,0 +1,118 @@
+.setup-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stepper-container{
+    width:80%;
+}
+
+.MuiStepLabel-label{
+    color: var(--primary-text-color);
+}
+
+.setup-header {
+    margin-top: 2%;
+    margin-left: 2%;
+    height: 10%;
+    width: 100%;
+    color: white;
+    font-size: 2rem;
+}
+
+.setup-body{
+    height: 60%;
+    width: 80%;
+    margin: 0 10%;
+    margin-top: 2%;
+}
+
+.steps-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-header{
+    height: 10vh;
+    width: 100%;
+    color: var(--primary-text-color);
+    font-size: 1.5rem;
+}
+
+.container-body{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.photo-container{
+    height: 80%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.photo-input{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.upload-file-button{
+    width: 50%;
+}
+
+.remove-file-button{
+    width: 50%;
+}
+
+.remove-file-button label{
+    width: 100%;
+    color: var(--primary-text-color);
+    padding: 1%;
+    background-color: var(--primary-color);
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+.remove-file-button label:hover{
+    cursor: pointer;
+    background-color: var(--tertiary-color);
+}
+
+.remove-file-button span{
+    margin-left: 2%;
+    margin-right: 2%;
+    color: var(--primary-text-color);
+}
+
+.setup-buttons{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.bio-container{
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-left: 10%;
+}

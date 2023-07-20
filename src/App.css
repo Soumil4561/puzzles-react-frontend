@@ -6,6 +6,7 @@
     --tertiary-color: #0072e4;
 }
 
+
 body{
     margin: 0;
     padding: 0;
@@ -14,62 +15,19 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.form-control{
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.form-btn{
-    
-    width: 25%;
-    margin: 300px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-    background-color: #333;
-    color: #fff;
-}
-
-.form-btn:hover{
-    background-color: #fff;
-    color: #333;
-    cursor: pointer;
-}
-
 .navbar-container{
     width: 100%;
-    height: 80px;
+    height: 10%;
     background-color: var(--secondary-color);
     box-shadow: 0 0 5px #999;
     top: 0;
     left: 0;
     z-index: 999;
     position: fixed;
-}
-
-.navbar{
-    padding: 0 1%;
-    width: 100%;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-logo{
@@ -81,13 +39,42 @@ body{
     margin-right: 10%;
 }
 
+.navbar-logo:hover{
+    cursor: pointer;
+}
+
+.create-topic{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 20%;
+    margin-left: 5%;
+    margin-right: 0;
+}
+
+.create-topic button{
+    width: 100%;
+    height: 100%;
+    padding: 5% 2%;
+    background-color: var(--primary-color);
+}
+
+.create-topic button:hover{
+    cursor: pointer;
+    background-color: var(--tertiary-color);
+}
+
 .create-post{
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 5%;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-right: 0;
+}
+
+.create-post button{
+    background-color: var(--primary-color);
 }
 
 .navbar-search{
@@ -95,19 +82,18 @@ body{
     flex-direction: row;
     align-items: center;
     color:#ffffff;
-    width: 40%;
-    padding: 1% 2%;
-    padding-top: 1%;
-    height: 1%;
-    size:2%;
+    width: 60%;
+    height: 100%;
+    margin-left: 2%;
+    margin-right: 5%;
 }
 
 .search-button{
-    margin-left: 5px;
+    margin-left: 5%;
 }
 
 .create-button{
-    margin-right:5px;
+    margin-right:5%;
 }
 
 .navbar-search input{
@@ -121,18 +107,19 @@ body{
     flex-direction: row;
     align-items: center;
     width: 5%;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-right: 2%;
 }
 
 .content-container{
-    margin-top: 2%;
     display: flex;
     flex-direction: row;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    margin-top: 100px;
+    overflow: hidden;
+    top: 10%;
+    margin-top: 1%;
+    position: absolute;
+    z-index: 0;
 }
 
 .topic-sidebar{
@@ -202,25 +189,44 @@ body{
     border: 1px solid #ffffff;
 }
 
-.sidebar-topic:hover{
-    border: 1px solid #ffffff;
-    cursor: pointer;
-}
-
-.posts-container{
-    display: block;
+.posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary-text-color);
     margin-left: 23%;
     margin-right: 1%;
     width: 50%;
     height: 100%;
+}
+
+
+.posts-container{
+    display: block;
+    height: 99%;
     left: 0;
     z-index: 999;
     overflow: hidden;
 }
 
+.load-more{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.post-title:hover{
+    cursor: pointer;
+}
+
 .post-media{
     padding: 0% 1%;
 }
+
 
 .post-describers{
     display: flex;
@@ -235,7 +241,24 @@ body{
     color:#ffffff;
 }
 
+
+
 .loading{
+    overflow: hidden;
+}
+
+.loading-post-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    z-index: 999;
+    color: var(--primary-text-color);
+    margin-left: 23%;
+    margin-right: 1%;
+    width: 50%;
+    height: 100%;
+    left: 0;
     overflow: hidden;
 }
 
@@ -293,22 +316,89 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
+.create-post-buttons button{
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 100%;
+    color: var(--primary-text-color);
+}
 .create-post-buttons:hover{
     cursor: pointer;
 }
 
-.preview-post{
+.create-topic-body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 999;
+    overflow: hidden;
+    color: var(--primary-text-color);
+}
+
+.create-topic-name{
+    width: 60%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: var(--primary-text-color);
+}
+
+.create-topic-description{
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: var(--primary-text-color);
+}
+
+.create-topic-image{
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    color: var(--primary-text-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 10%;
+}
+
+::-webkit-file-upload-button {
+    display: none;
+ }
+
+ .upload-file-button{
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    margin:2%
+ }
+
+.upload-file-button label{
+    width: 100%;
+    color: var(--primary-text-color);
+    padding: 1%;
+    background-color: var(--primary-color);
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+.upload-file-button label:hover{
+    cursor: pointer;
+    background-color: var(--tertiary-color);
+}
+
+.upload-file-button span{
     margin-left: 2%;
-    margin-right: 10%;
+    margin-right: 2%;
+    color: var(--primary-text-color);
 }
 
-.add-post{
-    margin-left: 8%;
-    margin-right: 10%;
-}
 
-.cancel-post{
-    margin-left: 10%;
-}

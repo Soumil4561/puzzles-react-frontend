@@ -1,0 +1,190 @@
+@keyframes fill {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+html,body{
+    height: 100%;
+    font-family: Kalam, sans-serif;
+}
+
+
+.custom-shape-divider-top-1687604294 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1687604294 svg {
+    position: relative;
+    display: block;
+    width: 130%;
+    height: 10%;
+    animation: fill 1.5s ease-in-out forwards;
+    z-index: 1;
+}
+
+.custom-shape-divider-top-1687604294 .shape-fill {
+    fill: var(--tertiary-color);
+}
+
+.custom-shape-divider-bottom-1687604434 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1687604434 svg {
+    position: relative;
+    display: block;
+    width: 130%;
+    height: 10%;
+    animation: fill 1.5s ease-in-out backwards;
+    z-index: 1;
+}
+
+.custom-shape-divider-bottom-1687604434 .shape-fill {
+    fill: var(--tertiary-color);
+}
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 999;
+    overflow: hidden;
+    color: var(--primary-text-color);
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    height: 80%;
+    margin-top: 9%;
+    margin-bottom: 9%;
+    width: 60%;
+    border-radius: 0;
+    border-radius: 2%;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    z-index: 999;
+}
+
+.form-img{
+    width: 50%;
+    height: 100%;
+}
+
+.form-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form{
+    margin:0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+}
+
+.MuiSvgIcon-root{
+    font-size: 3vw;
+    margin-right: 1%;
+}
+.form-title{
+    font-family: 'Kalam', cursive;
+    font-size: 2vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.MuiInput-root{
+    width: 65%;
+    margin: 1% 17.5%;
+    display: inline-block;
+    border: none none none none;
+    box-sizing: border-box;
+    border-bottom: 1px solid #001e3c;
+    background-color: transparent;
+}
+
+.Mui-focused{
+    border-bottom: none;
+}
+
+.MuiInput-input{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--primary-text-color);
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.MuiButton-root{
+    width: 20%;
+    display: inline-block;
+    border: none none none none;
+    box-sizing: border-box;
+    border-radius: 0;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    font-family: 'Kalam', cursive;
+    font-size: 1.5rem;
+    padding: 1% 0;
+    transition: all .2s ease-in-out;
+}
+
+.register-title{
+    font-family: 'Roboto', sans-serif;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    position: absolute;
+    right: 1%;
+    bottom: 0;
+    font-size: 1vw;
+}
