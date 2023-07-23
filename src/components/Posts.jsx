@@ -16,6 +16,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import { CardActionArea } from "@mui/material";
 import Link from "@mui/material/Link"
+import DateTimeParser from "./utilities/datetimeparser";
 
 
 const post = {
@@ -122,14 +123,15 @@ function Posts(props) {
         <div className="posts-container">
             <Stack spacing={1}>
                 {posts.map((post, index) => {
+                    const {date,time} = DateTimeParser(post.postCreated);
                     return (<>
                         <Post
                             key={index}
                             postID={post._id}
                             title={post.postTitle}
                             description={post.postContent}
-                            date={"hey"}
-                            time={"no"}
+                            date={date}
+                            time={time}
                             author={post.postCreatorName}
                             topic={post.postTopic}
                             likes={post.likes}
@@ -142,8 +144,5 @@ function Posts(props) {
         </div>
     )
 }
-
-
-
 
 export default Posts;

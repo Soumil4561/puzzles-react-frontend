@@ -79,6 +79,20 @@
     color: var(--primary-text-color);
 }
 
+.topicPage-join{
+    height: 100%; 
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.topicPage-join button{
+    width:100%;
+
+}
+
 .divider{
     top:57%;
     position: absolute;
@@ -91,11 +105,20 @@
 .topicPage-content-container{
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     top: 60%;
     position: absolute;
     z-index: 45;
+}
 
+.topicPage-posts{
+    height: 100%;
+    width: 60%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 
 

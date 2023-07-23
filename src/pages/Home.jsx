@@ -9,9 +9,7 @@ import { Button, IconButton } from "@mui/material";
 function Home() {
     const [loading, setLoading] = React.useState(true);
     const userID = useSelector(state => state.profile.userID);
-
     const [user, setUser] = React.useState(null);
-    const [topicsFollowed, setTopicsFollowed] = React.useState([]);
     const [posts, setPosts] = React.useState([]);
 
     const getUser = async () => {
@@ -23,7 +21,6 @@ function Home() {
         const result = await response.json();
         if (response.status === 200) {
             setUser(result.user);
-            setTopicsFollowed(result.topics);
             setPosts(result.posts);
             setLoading(false);
         }
@@ -57,7 +54,7 @@ function Home() {
     } else {
         return (<>
             <div className="content-container">
-                <TopicSidebar topicsFollowed={topicsFollowed} />
+                <TopicSidebar/>
                 <div className='posts'>
                 <Posts posts={posts} />
                 <Button className="load-more" color="primary" onClick={fetchMorePosts}>

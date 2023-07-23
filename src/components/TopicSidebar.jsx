@@ -1,12 +1,34 @@
 import React from "react";
-import Input from '@mui/joy/Input';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Link from '@mui/material/Link';
 import { Divider } from "@mui/material";
+import { useSelector } from "react-redux";
 
-function TopicSidebar(props) {
-    const topics = props.topicsFollowed;
+function TopicSidebar() {
+    const userID = useSelector((state) => state.userID);
+    const [topics, setTopics] = React.useState([]);
+
+    const getTopics = async () => {
+        const response = await fetch(`http://localhost:3000/topic/getUserFollowedTopics`, {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        const result = await response.json();
+        if (response.status === 200) {
+            console.log(result.topics);
+            setTopics(result.topics);
+        }
+    }
+
+    React.useEffect(() => {
+        (async () => {
+            await getTopics();
+        })();
+    }, [userID]);
+
     return (
         <div className="topic-sidebar">
             <div className="sidebar-header">

@@ -1,6 +1,18 @@
-.profile-container{
-    width: 60%;
+.sidebar-container{
+    width: 20%;
     height: 100%;
-    margin-left: 10%;
+    margin-top:2%;
+    margin-left: 2%;
+}
+
+.profile-container{
+    width: 50%;
+    height: 100%;
+    margin-top:2%;
+}
+
+.about-container{
+    width: 20%;
+    height: 100%;
     margin-top:2%;
 }

@@ -64,7 +64,7 @@ function App() {
                     <Route path="/home" element={user ? <Home /> : <Login />} />
                     <Route path="/topic/:topicName" element={<Topic />} />
                     <Route path="/posts/:postID" element={<Post />} />
-                    <Route path="/profile/:username" element={<Profile />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
