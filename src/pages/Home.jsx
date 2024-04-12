@@ -1,14 +1,12 @@
 import React from "react";
-import Pagination from '@mui/material/Pagination';
 import TopicSidebar from "../components/TopicSidebar";
 import Posts from "../components/Posts";
-import { useSelector } from "react-redux";
 import { LoadingHome } from "../components/Loading";
-import { Button, IconButton } from "@mui/material";
+import { Button } from "@mui/material";
+import AboutSidebar from "../components/AboutSidebar";
 
 function Home() {
     const [loading, setLoading] = React.useState(true);
-    const userID = useSelector(state => state.profile.userID);
     const [user, setUser] = React.useState(null);
     const [posts, setPosts] = React.useState([]);
 
@@ -56,13 +54,16 @@ function Home() {
             <div className="content-container">
                 <TopicSidebar/>
                 <div className='posts'>
-                <Posts posts={posts} />
-                <Button className="load-more" color="primary" onClick={fetchMorePosts}>
-                    Load More
-                </Button>
+                    <Posts posts={posts} />
+                    <Button className="load-more" color="primary" onClick={fetchMorePosts}>
+                        Load More
+                    </Button>
                 </div>
-                
+                <div className="right-sidebar">
+                    <AboutSidebar type="home"/>
+                </div>
             </div>
+            
         </>
         )
     }
